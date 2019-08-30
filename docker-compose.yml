@@ -1,0 +1,15 @@
+version: '2'
+services:
+    teeworlds:
+        image: petrbel/teeworlds:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./logs:/var/teeworlds/logs
+            # - ./conf:/var/teeworlds/conf  # enable for manual config modification
+        environment:
+            - TEEWORLDS_PASSWORD=mypassword
+        ports:
+            - 8303:8303/udp
+        restart: unless-stopped
